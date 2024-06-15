@@ -30,6 +30,22 @@ class DBClient {
         return this.client.isConnected();
     }
 
+    // Get no of users via Asyncronous method
+    async nbUsers() {
+        return this.db.collection('users').countDocuments();
+    }
+
+    // Get no of files via Asyncronous method
+    async nbFiles() {
+        return this.db.collection('files').countDocuments();
+    }
+}
+
+    // Create and export the DBClient instance
+    const dbClient = new DBClient();
+    export default dbClient;
+
+
 
 
 
