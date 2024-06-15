@@ -13,4 +13,26 @@ class DBClient {
         // Create the URL connection
         const url = `mongodb://${host}:${port}`;
 
+        // Create a new MongoClient
+        this.client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true });
+
+        // Connect to db
+        this.client.connect()
+            .then(() => console.log('Connected successfully to MongoDB server'))
+            .catch((err) => console.log(err));
+
+        // Select the database
+        this.db = this.client.db(database);
+    }
+
+    // Check if the Mongodb connection is active
+    isAlive() {
+        return this.client.isConnected();
+    }
+
+
+
+
+
+
 }
