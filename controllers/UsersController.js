@@ -1,6 +1,6 @@
 // Description: This file contains the logic for handling requests from the users route.
 // imports sha1 from the sha1 package & dbclient from the utils/db file
-// & ObjectId from the mongodb package & redisClient from the utils/redis file
+// & ObjectId from the mongodb package & redisClient from utils/redis file
 import sha1 from 'sha1';
 import { ObjectId } from 'mongodb';
 import DBClient from '../utils/db';
