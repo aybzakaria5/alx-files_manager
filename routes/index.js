@@ -1,6 +1,6 @@
 // Import { Router } from 'express' and controllers
 import { Router } from 'express';
-import AppController from '../controllers/AppController';
+import AppController from '../controllers/UsersController';
 import AuthController from '../controllers/AuthController';
 import UsersController from '../controllers/UsersController';
 import FilesController from '../controllers/FilesController';
