@@ -6,7 +6,6 @@ import { ObjectId } from 'mongodb';
 import DBClient from '../utils/db';
 import redisClient from '../utils/redis';
 
-
 class UsersController {
   static async postNew(req, res) {
     // Get the user's email and password from the request body
