@@ -74,4 +74,4 @@ class UsersController {
 }
 
 // Export the UsersController class for use in other files
-export default UsersController;
+module.exports = UsersController;
