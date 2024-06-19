@@ -5,14 +5,19 @@ class AppController {
   static async getStatus(request, response) {
     response.status(200).json({
       redis: redisClient.isAlive(),
-      db: await dbClient.isAlive(),
-});
+      db: dbClient.isAlive(),
+    });
   }
 
   static async getStats(request, response) {
-    const usersNum = await dbClient.nbUsers();
-    const filesNum = await dbClient.nbFiles();
-    response.status(200).json({ users: usersNum, files: filesNum });
+    try {
+      const usersNum = await dbClient.nbUsers();
+      const filesNum = await dbClient.nbFiles();
+      response.status(200).json({ users: usersNum, files: filesNum });
+    } catch (error) {
+      console.error(error);
+      response.status(500).json({ error: 'Internal Server Error' });
+    }
   }
 }
 
