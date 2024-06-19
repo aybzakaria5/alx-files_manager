@@ -1,6 +1,3 @@
-// Description: This file contains the logic for handling requests from the users route.
-// imports sha1 from the sha1 package & dbclient from the utils/db file
-// exports the UsersController class
 import sha1 from 'sha1';
 import { ObjectId } from 'mongodb';
 import DBClient from '../utils/db';
@@ -38,11 +35,12 @@ class UsersController {
       return res.status(401).send({ error: 'Unauthorized' });
     }
 
-    const tokenkey = `auth_${token}`;
-    const userId = await redisClient.get(tokenkey);
+    const tokenKey = `auth_${token}`;
+    const userId = await redisClient.get(tokenKey);
     if (!userId) {
       return res.status(401).send({ error: 'Unauthorized' });
     }
+
     const user = await DBClient.db.collection('users').findOne({ _id: ObjectId(userId) });
     if (!user) {
       return res.status(401).send({ error: 'Unauthorized' });
