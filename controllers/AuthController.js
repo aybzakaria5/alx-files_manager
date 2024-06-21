@@ -71,4 +71,4 @@ class AuthController {
 }
 
 // Export the AuthController class for use in other files
-export default AuthController;
+module.exports = AuthController;
