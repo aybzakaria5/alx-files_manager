@@ -21,7 +21,9 @@ class FilesController {
     const user = await dbClient.users.findOne({ _id: new dbClient.ObjectID(userId) });
     if (!user) return res.status(401).json({ error: 'Unauthorized' });
 
-    const { name, type, parentId, isPublic, data } = req.body;
+    const {
+      name, type, parentId, isPublic, data,
+    } = req.body;
 
     // Basic validation for required fields
     if (!name) return res.status(400).json({ error: 'Missing name' });
@@ -136,7 +138,7 @@ class FilesController {
     // Update file to be public
     await dbClient.files.updateOne(
       { _id: new dbClient.ObjectID(fileId) },
-      { $set: { isPublic: true } }
+      { $set: { isPublic: true } },
     );
 
     file.isPublic = true;
@@ -159,7 +161,7 @@ class FilesController {
     // Update file to be private
     await dbClient.files.updateOne(
       { _id: new dbClient.ObjectID(fileId) },
-      { $set: { isPublic: false } }
+      { $set: { isPublic: false } },
     );
 
     file.isPublic = false;
@@ -169,7 +171,7 @@ class FilesController {
   // Retrieves a file for download
   static async getFile(req, res) {
     const fileId = req.params.id;
-    const size = req.query.size;
+    const { size } = req.query;
 
     const file = await dbClient.files.findOne({ _id: new dbClient.ObjectID(fileId) });
     if (!file) return res.status(404).json({ error: 'Not found' });
